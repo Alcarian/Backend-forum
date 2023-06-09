@@ -1,5 +1,5 @@
 const MessagesModel = require("../models/postModel");
-const mysqlConnection = require("../config/db");
+const mysqlConnection = require("../config/DataBase");
 
 exports.getPosts = async (req, res) => {
   try {
