@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   cors({
-    origin: "https://forum-alcarian.netlify.app",
+    origin: "http://localhost:3001/",
+    // "https://forum-alcarian.netlify.app",
     credentials: true,
   })
 );

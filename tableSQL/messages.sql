@@ -1,0 +1,5 @@
+CREATE TABLE messages (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  message VARCHAR(300),
+  author VARCHAR(15)
+);
