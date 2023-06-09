@@ -13,7 +13,7 @@ mysqlpool.getConnection((err, connection) => {
     console.log(`error connecting: ${err.stack}`);
   } else {
     console.log("connecté à la base de donnée quai_antique");
-    console.log(`connected as id ${mysqlconnection.threadId}`);
+    console.log(`connected as id ${mysqlpool.threadId}`);
     connection.release();
   }
 });
