@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const port = 5000;
+const dotenv = require("dotenv").config();
 
 const app = express();
 
@@ -15,4 +15,4 @@ app.use(
   })
 );
 
-app.listen(port, () => console.log("Le server a démarré"));
+app.listen(process.env.PORT, () => console.log("Le server a démarré"));
