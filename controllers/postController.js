@@ -1,10 +1,10 @@
 const MessagesModel = require("../models/postModel");
-const mysqlConnection = require("../config/DataBase");
+const mysqlpool = require("../config/DataBase");
 
 exports.getPosts = async (req, res) => {
   try {
     const querySQL = "SELECT * FROM `messages`";
-    const posts = await mysqlConnection.query(querySQL);
+    const posts = await mysqlpool.query(querySQL);
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error });
@@ -16,7 +16,7 @@ exports.createPosts = (req, res) => {
 
   const messagesPost = new MessagesModel(messages, author);
 
-  mysqlConnection.query(
+  mysqlpool.query(
     "INSERT INTO messages SET ?",
     messagesPost,
     (error, results) => {
@@ -36,7 +36,7 @@ exports.editPosts = (req, res) => {
 
   const updatedPost = new MessagesModel(messages, author);
 
-  mysqlConnection.query(
+  mysqlpool.query(
     "UPDATE messages SET ? WHERE id = ?",
     [updatedPost, postId],
     (error, results) => {
@@ -57,7 +57,7 @@ exports.editPosts = (req, res) => {
 exports.deletePosts = (req, res) => {
   const { postId } = req.params;
 
-  mysqlConnection.query(
+  mysqlpool.query(
     "DELETE FROM messages WHERE id = ?",
     postId,
     (error, results) => {
