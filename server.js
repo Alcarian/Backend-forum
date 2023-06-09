@@ -7,4 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(
+  cors({
+    origin: "https://forum-alcarian.netlify.app/",
+    credentials: true,
+  })
+);
+
 app.listen(port, () => console.log("Le server a démarré"));
