@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
   cors({
-    origin: "https://forum-alcarian.netlify.app/post",
+    origin: "https://forum-alcarian.netlify.app",
     credentials: true,
   })
 );
