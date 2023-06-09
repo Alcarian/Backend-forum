@@ -17,7 +17,7 @@ exports.createPosts = (req, res) => {
   const messagesPost = new MessagesModel(messages, author);
 
   mysqlpool.query(
-    "INSERT INTO message SET ?",
+    "INSERT INTO messages SET ?",
     messagesPost,
     (error, results) => {
       if (error) {
