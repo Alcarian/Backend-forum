@@ -15,6 +15,6 @@ app.use(
   })
 );
 
-app.use("/post", require("./routes/post.routes"));
+app.use("/post", require("./routes/postRoute"));
 
 app.listen(process.env.PORT, () => console.log("Le server a démarré"));
