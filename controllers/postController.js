@@ -12,9 +12,9 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.createPosts = (req, res) => {
-  const { messages, author } = req.body;
+  const { message, author } = req.body;
 
-  const messagesPost = new MessagesModel(messages, author);
+  const messagesPost = new MessagesModel(message, author);
 
   mysqlpool.query(
     "INSERT INTO messages SET ?",
@@ -32,9 +32,9 @@ exports.createPosts = (req, res) => {
 };
 
 exports.editPosts = (req, res) => {
-  const { postId, messages, author } = req.body;
+  const { postId, message, author } = req.body;
 
-  const updatedPost = new MessagesModel(messages, author);
+  const updatedPost = new MessagesModel(message, author);
 
   mysqlpool.query(
     "UPDATE messages SET ? WHERE id = ?",

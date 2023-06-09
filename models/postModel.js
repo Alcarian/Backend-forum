@@ -1,5 +1,5 @@
 class messagesModel {
-  messages;
+  message;
   author;
 }
 
