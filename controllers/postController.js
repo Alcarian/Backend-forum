@@ -66,13 +66,9 @@ exports.deletePosts = (req, res) => {
         res.status(500).json({ error });
       } else {
         if (results.affectedRows === 0) {
-          res
-            .status(404)
-            .json(console.log({ message: "Le message n'a pas été trouvé" }));
+          res.status(404).json({ message: "Le message n'a pas été trouvé" });
         } else {
-          res
-            .status(200)
-            .json(console.log({ message: "Message supprimé avec succès" }));
+          res.status(200).json({ message: "Message supprimé avec succès" });
         }
       }
     }
