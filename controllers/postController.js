@@ -4,7 +4,7 @@ const mysqlpool = require("../config/DataBase");
 exports.getPosts = async (req, res) => {
   try {
     const querySQL = "SELECT * FROM `messages`";
-    const posts = await mysqlpool.query(querySQL);
+    const posts = await mysqlpool.query(querySQL, MessagesModel);
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error });
