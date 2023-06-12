@@ -1,6 +1,8 @@
-class messagesModel {
-  message;
-  author;
+class MessagesModel {
+  constructor(message, author) {
+    this.message = message;
+    this.author = author;
+  }
 }
 
-module.exports = messagesModel;
+module.exports = MessagesModel;
