@@ -59,7 +59,7 @@ exports.deletePosts = (req, res) => {
 
   mysqlpool.query(
     "DELETE FROM messages WHERE id = ?",
-    postId,
+    [postId],
     (error, results) => {
       if (error) {
         console.log(error);
