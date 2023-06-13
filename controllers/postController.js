@@ -58,7 +58,7 @@ exports.deletePosts = (req, res) => {
   // Aller chercher l'id de l'objet a supprimer dans la requête
   const { postId } = req.params;
 
-  const selectSql = "SELECT * FROM `messages` WHERE `id` = ?";
+  const selectSql = "SELECT * FROM messages WHERE id = ?";
   const deleteSql = "DELETE FROM messages WHERE id = ?";
 
   mysqlpool
