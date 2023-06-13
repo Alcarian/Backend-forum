@@ -69,7 +69,7 @@ exports.deletePosts = (req, res) => {
 
         // Ma requète PHPmyadmin pour supprimer la data
         const querySql = `
-      DELETE FROM user
+      DELETE FROM messages
       WHERE id= ?
       `;
 
