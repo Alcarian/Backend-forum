@@ -57,6 +57,8 @@ exports.editPosts = (req, res) => {
 exports.deletePosts = (req, res) => {
   // Aller chercher l'id de l'objet a supprimer dans la requête
   const { postId } = req.params;
+  console.log("POSTID***********");
+  console.log(postId);
 
   const selectSql = "SELECT * FROM messages WHERE id = ?";
   const deleteSql = "DELETE FROM messages WHERE id = ?";
@@ -67,13 +69,13 @@ exports.deletePosts = (req, res) => {
       // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
       if (results[0]) {
         console.log("Présence de l'objet dans la base de donnée");
-        console.log(results);
+        // console.log(results);
 
         // La connexion a la base de donnée
         mysqlpool
           .query(deleteSql, [postId])
           .then((results) => {
-            console.log(results);
+            // console.log(results);
             res.status(200).json({
               message: "Objet effacé dans la base de donnée",
             });
