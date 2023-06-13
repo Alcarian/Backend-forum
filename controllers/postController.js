@@ -66,33 +66,33 @@ exports.deletePosts = (req, res) => {
       // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
       if (results[0]) {
         console.log("Présence de l'objet dans la base de donnée");
+
+        // Ma requète PHPmyadmin pour supprimer la data
+        const querySql = `
+      DELETE FROM user
+      WHERE id= ?
+      `;
+
+        const values = [id];
+
+        // La connexion a la base de donnée
+        mysqlpool
+          .query(querySql, values)
+          .then((results) => {
+            res.status(201).json({
+              message: "Objet effacé dans la base de donnée",
+              results,
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({ error });
+          });
       } else {
         console.log("Objet non présent dans la base de donnée");
         return res.status(404).json({
           message: "pas d'objet a supprimer dans la base de donnée",
         });
       }
-
-      // Ma requète PHPmyadmin pour supprimer la data
-      const querySql = `
-            DELETE FROM user
-            WHERE id= ?
-            `;
-
-      const values = [id];
-
-      // La connexion a la base de donnée
-      mysqlpool
-        .query(querySql, values)
-        .then((results) => {
-          res.status(201).json({
-            message: "Objet effacé dans la base de donnée",
-            results,
-          });
-        })
-        .catch((error) => {
-          res.status(500).json({ error });
-        });
     })
     .catch((error) => {
       res.status(500).json({ error: error, message: "ERREUR !" });
