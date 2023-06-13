@@ -25,7 +25,7 @@ exports.createPosts = (req, res) => {
         res.status(500).json({ message: error });
       } else {
         console.log(results);
-        res.status(200).json(console.log({ message: "Message enregistré" }));
+        res.status(200).json({ message: "Message enregistré" });
       }
     }
   );
