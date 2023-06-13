@@ -61,7 +61,6 @@ exports.deletePosts = (req, res) => {
   const querySql = "SELECT * FROM `messages` WHERE `id` = ?";
 
   mysqlpool
-    .promise()
     .query(querySql, [postId])
     .then((results) => {
       // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
@@ -84,7 +83,6 @@ exports.deletePosts = (req, res) => {
 
       // La connexion a la base de donnée
       mysqlpool
-        .promise()
         .query(querySql, values)
         .then((results) => {
           res.status(201).json({
