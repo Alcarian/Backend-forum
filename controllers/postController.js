@@ -76,7 +76,7 @@ exports.deletePosts = (req, res) => {
           .query(deleteSql, [postId])
           .then((results) => {
             // console.log(results);
-            res.status(200).json({
+            res.status(201).json({
               message: "Objet effacé dans la base de donnée",
             });
           })
