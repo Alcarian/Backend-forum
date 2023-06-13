@@ -57,10 +57,9 @@ exports.editPosts = (req, res) => {
 exports.deletePosts = (req, res) => {
   const { postId } = req.params;
 
-  mysqlpool.query(
-    "DELETE FROM messages WHERE id = ?",
-    [postId],
-    (error, results) => {
+  mysqlpool
+    .promise()
+    .query("DELETE FROM messages WHERE id = ?", [postId], (error, results) => {
       if (error) {
         console.log(error);
         res.status(500).json({ error });
@@ -71,6 +70,5 @@ exports.deletePosts = (req, res) => {
           res.status(200).json({ message: "Message supprimé avec succès" });
         }
       }
-    }
-  );
+    });
 };
