@@ -6,9 +6,9 @@ const mysql = require("mysql2/promise");
 //url
 const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
 
-const mysqlconnection = mysql.createConnection(urlDB);
+const mysqlpool = mysql.createPool(urlDB);
 
-mysqlconnection
+mysqlpool
   .getConnection()
   .then((connection) => {
     console.log("Connecté à la base de données forum");
@@ -20,4 +20,4 @@ mysqlconnection
     console.log(`Erreur de connexion à la base de données: ${error}`);
   });
 
-module.exports = mysqlconnection;
+module.exports = mysqlpool;
