@@ -72,7 +72,7 @@ exports.deletePosts = (req, res) => {
         mysqlpool
           .query(deleteSql, [postId])
           .then(() => {
-            res.status(201).json({
+            res.status(200).json({
               message: "Objet effacé dans la base de donnée",
             });
           })
@@ -81,7 +81,7 @@ exports.deletePosts = (req, res) => {
           });
       } else {
         console.log("Objet non présent dans la base de donnée");
-        return res.status(404).json({
+        res.status(404).json({
           message: "pas d'objet a supprimer dans la base de donnée",
         });
       }
