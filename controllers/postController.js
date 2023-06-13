@@ -58,30 +58,22 @@ exports.deletePosts = (req, res) => {
   // Aller chercher l'id de l'objet a supprimer dans la requête
   const { postId } = req.params;
 
-  const querySql = "SELECT * FROM `messages` WHERE `id` = ?";
+  const selectSql = "SELECT * FROM `messages` WHERE `id` = ?";
+  const deleteSql = "DELETE FROM messages WHERE id = ?";
 
   mysqlpool
-    .query(querySql, [postId])
+    .query(selectSql, [postId])
     .then((results) => {
       // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
       if (results[0]) {
         console.log("Présence de l'objet dans la base de donnée");
 
-        // Ma requète PHPmyadmin pour supprimer la data
-        const deleteSql = `
-      DELETE FROM messages
-      WHERE id= ?
-      `;
-
-        const values = [postId];
-
         // La connexion a la base de donnée
         mysqlpool
-          .query(deleteSql, values)
-          .then((results) => {
+          .query(deleteSql, [postId])
+          .then(() => {
             res.status(201).json({
               message: "Objet effacé dans la base de donnée",
-              results,
             });
           })
           .catch((error) => {
