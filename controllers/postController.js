@@ -69,7 +69,7 @@ exports.deletePosts = (req, res) => {
       // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
       if (results[0]) {
         console.log("Présence de l'objet dans la base de donnée");
-        // console.log(results);
+        console.log(results[0]);
 
         // La connexion a la base de donnée
         mysqlpool
