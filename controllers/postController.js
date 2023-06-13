@@ -56,7 +56,7 @@ exports.editPosts = (req, res) => {
 
 exports.deletePosts = (req, res) => {
   // Aller chercher l'id de l'objet a supprimer dans la requête
-  const { postId } = req.params;
+  const { postId } = req.params.id;
   console.log("POSTID***********REQ");
   console.log(req);
 
