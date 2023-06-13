@@ -57,18 +57,21 @@ exports.editPosts = (req, res) => {
 exports.deletePosts = (req, res) => {
   const { postId } = req.params;
 
-  mysqlpool
-    .promise()
-    .query("DELETE FROM messages WHERE id = ?", [postId], (error, results) => {
+  mysqlpool.query(
+    "DELETE FROM messages WHERE id = ?",
+    [postId],
+    (error, results) => {
       if (error) {
         console.log(error);
         res.status(500).json({ error });
       } else {
         if (results.affectedRows === 0) {
+          console.log(results);
           res.status(404).json({ message: "Le message n'a pas été trouvé" });
         } else {
           res.status(200).json({ message: "Message supprimé avec succès" });
         }
       }
-    });
+    }
+  );
 };
