@@ -55,22 +55,69 @@ exports.editPosts = (req, res) => {
 };
 
 exports.deletePosts = (req, res) => {
+  // Aller chercher l'id de l'objet a supprimer dans la requête
   const { postId } = req.params;
 
-  mysqlpool.query(
-    "DELETE FROM messages WHERE id = ?",
-    [postId],
-    (error, results) => {
-      if (error) {
-        console.log(error);
-        res.status(500).json({ error });
+  const querySql = "SELECT * FROM `messages` WHERE `id` = ?";
+
+  mysqlpool
+    .promise()
+    .query(querySql, [postId])
+    .then((results) => {
+      // controle de l'existance de la donnée dans la bdd pour éviter le crash du serveur
+      if (results[0]) {
+        console.log("Présence de l'objet dans la base de donnée");
       } else {
-        if (results.affectedRows === 0) {
-          res.status(404).json({ message: "Le message n'a pas été trouvé" });
-        } else {
-          res.status(200).json({ message: "Message supprimé avec succès" });
-        }
+        console.log("Objet non présent dans la base de donnée");
+        return res.status(404).json({
+          message: "pas d'objet a supprimer dans la base de donnée",
+        });
       }
-    }
-  );
+
+      // Ma requète PHPmyadmin pour supprimer la data
+      const querySql = `
+            DELETE FROM user
+            WHERE id= ?
+            `;
+
+      const values = [id];
+
+      // La connexion a la base de donnée
+      mysqlpool
+        .promise()
+        .query(querySql, values)
+        .then((results) => {
+          res.status(201).json({
+            message: "Objet effacé dans la base de donnée",
+            results,
+          });
+        })
+        .catch((error) => {
+          res.status(500).json({ error });
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error, message: "ERREUR !" });
+    });
 };
+
+// exports.deletePosts = (req, res) => {
+//   const { postId } = req.params;
+
+//   mysqlpool.query(
+//     "DELETE FROM messages WHERE id = ?",
+//     [postId],
+//     (error, results) => {
+//       if (error) {
+//         console.log(error);
+//         res.status(500).json({ error });
+//       } else {
+//         if (results.affectedRows === 0) {
+//           res.status(404).json({ message: "Le message n'a pas été trouvé" });
+//         } else {
+//           res.status(200).json({ message: "Message supprimé avec succès" });
+//         }
+//       }
+//     }
+//   );
+// };
