@@ -36,11 +36,6 @@ exports.editPosts = (req, res) => {
   const author = req.body.userId;
   const message = req.body.message;
 
-  console.log("POSTID**MESS**AUTHOR*****");
-  console.log(postId, message, author);
-  console.log("********REQ.BODY************");
-  console.log(req.body);
-
   const updatedPost = new MessagesModel(message, author);
 
   mysqlpool.query(
