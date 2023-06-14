@@ -34,7 +34,7 @@ exports.createPosts = (req, res) => {
 exports.editPosts = (req, res) => {
   const postId = req.params.id;
   const author = req.body.userId;
-  const message = req.body;
+  const message = req.body.message;
 
   console.log("POSTID**MESS**AUTHOR*****");
   console.log(postId, message, author);
