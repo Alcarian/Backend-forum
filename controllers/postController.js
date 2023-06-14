@@ -32,7 +32,9 @@ exports.createPosts = (req, res) => {
 };
 
 exports.editPosts = (req, res) => {
-  const { postId, message, author } = req.body;
+  const postId = req.params.id;
+
+  const { message, author } = req.body;
   console.log("POSTID**MESS**AUTHOR*****");
   console.log(postId, message, author);
 
