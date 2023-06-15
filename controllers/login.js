@@ -7,10 +7,11 @@ const app = express();
 // Route pour la connexion de l'utilisateur
 exports.login = async (req, res) => {
   try {
-    const { pseudo, password } = req.body;
+    const pseudo = req.body.pseudo;
+    const password = req.body.password;
 
     // Connexion à la base de données
-    const connection = await mysql.createConnection(dataBase);
+    const connection = dataBase;
 
     // Récupération du mot de passe hashé de l'utilisateur
     const query = "SELECT mot_de_passe FROM users WHERE pseudo = ?";

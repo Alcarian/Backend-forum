@@ -8,8 +8,6 @@ exports.register = async (req, res) => {
   try {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
-    console.log("******PSEUDO ET PASSWORD**********");
-    console.log(pseudo, password);
 
     // Génération du sel pour le hachage du mot de passe
     const saltRounds = 10;
@@ -17,7 +15,6 @@ exports.register = async (req, res) => {
 
     // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, salt);
-    console.log("*****HASHPASSEWORD****");
 
     // Connexion à la base de données
     const connection = dataBase;
@@ -25,8 +22,6 @@ exports.register = async (req, res) => {
     // Enregistrement de l'utilisateur dans la base de données
     const query = "INSERT INTO users (pseudo, mot_de_passe) VALUES (?, ?)";
     await connection.execute(query, [pseudo, hashedPassword]);
-
-    connection.end();
 
     res.status(201).json({ message: "Utilisateur enregistré avec succès" });
   } catch (error) {
