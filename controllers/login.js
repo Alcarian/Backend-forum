@@ -16,6 +16,8 @@ exports.login = async (req, res) => {
     // Récupération du mot de passe hashé de l'utilisateur
     const query = "SELECT mot_de_passe FROM users WHERE pseudo = ?";
     const [rows] = await connection.execute(query, [pseudo]);
+    console.log("********ROWS*********");
+    console.log(rows);
 
     if (rows.length === 0) {
       // L'utilisateur n'existe pas
@@ -24,6 +26,8 @@ exports.login = async (req, res) => {
     }
 
     const hashedPassword = rows[0].password;
+    console.log("*******HASHPASSEWORD***********");
+    console.log(hashedPassword);
 
     // Vérification du mot de passe
     const isMatch = await bcrypt.compare(password, hashedPassword);
