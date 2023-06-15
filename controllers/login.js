@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
       return;
     }
 
-    const hashedPassword = rows[0].password;
+    const hashedPassword = rows[0].mot_de_passe;
     console.log("*******HASHPASSEWORD***********");
     console.log(hashedPassword);
 
