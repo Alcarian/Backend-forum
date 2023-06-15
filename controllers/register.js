@@ -6,9 +6,10 @@ const app = express();
 
 exports.register = async (req, res) => {
   try {
-    const { pseudo, password } = req.body;
-    console.log("******REQ.BODY**********");
-    console.log(req.body);
+    const pseudo = req.body.pseudo;
+    const password = req.body.password;
+    console.log("******PSEUDO ET PASSWORD**********");
+    console.log(pseudo, password);
 
     // Génération du sel pour le hachage du mot de passe
     const saltRounds = 10;
@@ -16,6 +17,7 @@ exports.register = async (req, res) => {
 
     // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, salt);
+    console.log("*****HASHPASSEWORD****");
 
     // Connexion à la base de données
     const connection = dataBase;
