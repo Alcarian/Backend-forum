@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2/promise");
+const dataBase = require("../config/DataBase");
 const app = express();
 
 exports.register = async (req, res) => {
@@ -15,6 +16,9 @@ exports.register = async (req, res) => {
 
     // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Connexion à la base de données
+    const connection = await mysql.createConnection(dataBase);
 
     // Enregistrement de l'utilisateur dans la base de données
     const query = "INSERT INTO users (pseudo, mot_de_passe) VALUES (?, ?)";

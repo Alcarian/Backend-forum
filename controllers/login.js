@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2/promise");
+const dataBase = require("../config/DataBase");
 const app = express();
 
 // Route pour la connexion de l'utilisateur
@@ -9,7 +10,7 @@ exports.login = async (req, res) => {
     const { pseudo, password } = req.body;
 
     // Connexion à la base de données
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await mysql.createConnection(dataBase);
 
     // Récupération du mot de passe hashé de l'utilisateur
     const query = "SELECT mot_de_passe FROM users WHERE pseudo = ?";
