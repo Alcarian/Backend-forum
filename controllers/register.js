@@ -6,6 +6,8 @@ const app = express();
 app.post("/register", async (req, res) => {
   try {
     const { pseudo, password } = req.body;
+    console.log("******REQ.BODY**********");
+    console.log(req.body);
 
     // Génération du sel pour le hachage du mot de passe
     const saltRounds = 10;
