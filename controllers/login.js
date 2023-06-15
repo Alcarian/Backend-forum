@@ -36,10 +36,10 @@ exports.login = async (req, res) => {
       // Mot de passe incorrect
       res.status(401).json({ error: "Identifiants invalides" });
       return;
-    } else {
-      // Authentification réussie
-      res.status(200).json({ message: "Authentification réussie" });
     }
+    // Authentification réussie
+    res.status(200).json({ message: "Authentification réussie" });
+    console.log(res.status);
   } catch (error) {
     console.error(error);
     res
