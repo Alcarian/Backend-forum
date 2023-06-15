@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
       return;
     }
     // Authentification réussie
-    res.status(200).json({ message: "Authentification réussie" });
+    res.statusCode(200).json({ message: "Authentification réussie" });
     console.log(res);
   } catch (error) {
     console.error(error);
