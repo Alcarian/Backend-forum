@@ -14,9 +14,6 @@ app.post("/register", async (req, res) => {
     // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Connexion à la base de données
-    const connection = await mysql.createConnection(dbConfig);
-
     // Enregistrement de l'utilisateur dans la base de données
     const query = "INSERT INTO users (pseudo, mot_de_passe) VALUES (?, ?)";
     await connection.execute(query, [pseudo, hashedPassword]);
