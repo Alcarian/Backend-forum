@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const mysql = require("mysql2/promise");
 const app = express();
 
-app.post("/register", async (req, res) => {
+exports.register = async (req, res) => {
   try {
     const { pseudo, password } = req.body;
     console.log("******REQ.BODY**********");
@@ -29,4 +29,4 @@ app.post("/register", async (req, res) => {
       .status(500)
       .json({ error: "Erreur lors de l'enregistrement de l'utilisateur" });
   }
-});
+};

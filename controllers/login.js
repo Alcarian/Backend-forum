@@ -4,7 +4,7 @@ const mysql = require("mysql2/promise");
 const app = express();
 
 // Route pour la connexion de l'utilisateur
-app.post("/login", async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const { pseudo, password } = req.body;
 
@@ -42,4 +42,4 @@ app.post("/login", async (req, res) => {
       .status(500)
       .json({ error: "Erreur lors de l'authentification de l'utilisateur" });
   }
-});
+};
