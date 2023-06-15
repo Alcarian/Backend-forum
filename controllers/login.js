@@ -12,7 +12,7 @@ app.post("/login", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig);
 
     // Récupération du mot de passe hashé de l'utilisateur
-    const query = "SELECT password FROM users WHERE pseudo = ?";
+    const query = "SELECT mot_de_passe FROM users WHERE pseudo = ?";
     const [rows] = await connection.execute(query, [pseudo]);
 
     if (rows.length === 0) {

@@ -18,7 +18,7 @@ app.post("/register", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig);
 
     // Enregistrement de l'utilisateur dans la base de données
-    const query = "INSERT INTO users (pseudo, password) VALUES (?, ?)";
+    const query = "INSERT INTO users (pseudo, mot_de_passe) VALUES (?, ?)";
     await connection.execute(query, [pseudo, hashedPassword]);
 
     connection.end();
