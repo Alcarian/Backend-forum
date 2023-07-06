@@ -10,9 +10,6 @@ exports.login = async (req, res) => {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
 
-    console.log("***pseudo***");
-    console.log(pseudo);
-
     // Connexion à la base de données
     const connection = dataBase;
 
