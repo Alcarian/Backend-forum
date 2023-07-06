@@ -33,7 +33,7 @@ exports.createPosts = (req, res) => {
 
 exports.editPosts = (req, res) => {
   const postId = req.params.id;
-  const author = req.body.userId;
+  const author = req.body.pseudo;
   const message = req.body.message;
 
   const updatedPost = new MessagesModel(message, author);
