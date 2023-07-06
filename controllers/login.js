@@ -10,6 +10,9 @@ exports.login = async (req, res) => {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
 
+    console.log("***pseudo***");
+    console.log(pseudo);
+
     // Connexion à la base de données
     const connection = dataBase;
 
@@ -24,8 +27,8 @@ exports.login = async (req, res) => {
     }
 
     const hashedPassword = rows[0].mot_de_passe;
-    console.log("*******HASHPASSEWORD***********");
-    console.log(hashedPassword);
+    // console.log("*******HASHPASSEWORD***********");
+    // console.log(hashedPassword);
 
     // Vérification du mot de passe
     const isMatch = await bcrypt.compare(password, hashedPassword);
